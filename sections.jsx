@@ -82,9 +82,10 @@ function ReadmeSection({ onOpen }) {
 
       <h2 className="fade-in d5">whoami</h2>
       <p className="fade-in d5">
-        Hi, I'm <strong style={{ color: "var(--fg-bright)" }}>Spondanai</strong> — a Backend Developer based in
-        Chiangmai, Thailand with <span className="link" onClick={() => onOpen("about.ts")}>2 years 8 months</span> of
-        experience shipping production systems in <strong style={{ color: "var(--ty)" }}>Go</strong> and{" "}
+        Hi, I'm <strong style={{ color: "var(--fg-bright)" }}>Spondanai</strong> — a Software Engineer at{" "}
+        <strong style={{ color: "var(--accent-2)" }}>Internet Thailand PCL (INET)</strong>, based in Chiangmai.
+        I've been here for <span className="link" onClick={() => onOpen("about.ts")}>2 years 8 months</span>,
+        building backend systems in <strong style={{ color: "var(--ty)" }}>Go</strong> and{" "}
         <strong style={{ color: "#3178C6" }}>TypeScript</strong>.
       </p>
       <p className="fade-in d5">
@@ -95,9 +96,10 @@ function ReadmeSection({ onOpen }) {
         together.
       </p>
       <p className="fade-in d5">
-        Currently at <strong style={{ color: "var(--fn)" }}>Softway</strong>, building the orchestration backend
-        for an ONLYOFFICE document collaboration platform — 15 modules, real-time co-editing via webhooks,
-        70+ OneBox bridge endpoints, and an RS256/JWKS trust chain between services.
+        Currently building the orchestration backend for the{" "}
+        <strong style={{ color: "var(--fn)" }}>Softway ONLYOFFICE</strong> document collaboration platform —
+        15 modules, real-time co-editing via webhooks, 70+ OneBox bridge endpoints, and an RS256/JWKS trust chain
+        between services.
       </p>
 
       <h2 className="fade-in d5">what I care about</h2>
@@ -146,6 +148,7 @@ function AboutSection() {
   [<><span className="kw">export</span> <span className="kw">interface</span> <span className="ty">Profile</span> <span className="op">{"{"}</span></>],
   [<>  <span className="pr">name</span>: <span className="ty">string</span>;</>],
   [<>  <span className="pr">role</span>: <span className="ty">string</span>;</>],
+  [<>  <span className="pr">company</span>: <span className="ty">string</span>;</>],
   [<>  <span className="pr">years</span>: <span className="ty">number</span>;</>],
   [<>  <span className="pr">stack</span>: <span className="ty">string</span>[];</>],
   [<>  <span className="pr">values</span>: <span className="ty">string</span>[];</>],
@@ -155,7 +158,8 @@ function AboutSection() {
   [<><span className="kw">const</span> <span className="vr">me</span>: <span className="ty">Profile</span> <span className="op">=</span> <span className="op">{"{"}</span></>],
   [<>  <span className="pr">name</span>: <span className="st">"{PROFILE.name}"</span>,</>],
   [<>  <span className="pr">role</span>: <span className="st">"{PROFILE.role}"</span>,</>],
-  [<>  <span className="pr">years</span>: <span className="nm">2.67</span>, <span className="cm">// 2 years, 8 months</span></>],
+  [<>  <span className="pr">company</span>: <span className="st">"{PROFILE.company}"</span>,</>],
+  [<>  <span className="pr">years</span>: <span className="nm">2.67</span>, <span className="cm">// 2 years, 8 months at INET</span></>],
   [<>  <span className="pr">stack</span>: [{PROFILE.stack.map((s, i) => <React.Fragment key={s}><span className="st">"{s}"</span>{i < PROFILE.stack.length - 1 ? ", " : ""}</React.Fragment>)}],</>],
   [<>  <span className="pr">values</span>: [</>],
   [<>    <span className="st">"write code that other people can read"</span>,</>],

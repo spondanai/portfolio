@@ -3,7 +3,9 @@
 const PROFILE = {
   name: "Spondanai Rukwong",
   handle: "spondanai",
-  role: "Backend Developer",
+  role: "Software Engineer",
+  focus: "Backend Developer",
+  company: "Internet Thailand PCL (INET)",
   tenure: { years: 2, months: 8 },
   location: "Chiangmai, Thailand",
   stack: ["Go", "TypeScript", "NestJS", "Fiber", "PostgreSQL", "Redis"],

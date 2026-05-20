@@ -363,6 +363,48 @@
   .projects-cta a:hover { text-decoration: underline; }
   .projects-cta .arrow { color: var(--kw); margin-right: 4px; }
 
+  /* Work experience ----------------------------------------------------- */
+  .work-entry {
+    padding: 8px 0 10px;
+    border-bottom: 1px dashed var(--border-strong);
+    font-family: var(--font-mono);
+  }
+  .work-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .work-company {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--fg-bright);
+  }
+  .work-ticker { color: var(--accent-2); margin-left: 4px; font-weight: 400; }
+  .work-period {
+    font-size: 11px;
+    color: var(--term-green);
+    white-space: nowrap;
+  }
+  .work-title {
+    font-size: 12px;
+    color: var(--cm);
+    margin-top: 3px;
+  }
+  .work-title .k { color: var(--kw); }
+  .work-title .v { color: var(--st); }
+  .work-duration { color: var(--fg-dim); margin-left: 8px; font-size: 11px; }
+  .work-scope {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--fg);
+    margin-top: 5px;
+    line-height: 1.5;
+    max-width: 72ch;
+  }
+  .work-scope strong { color: var(--fn); font-weight: 600; }
+
   /* Education ----------------------------------------------------------- */
   .edu {
     font-family: var(--font-mono);
@@ -490,6 +532,17 @@
     .projects-cta a { color: #1d4ed8 !important; }
     .projects-cta .arrow { color: #7e22ce !important; }
 
+    .work-entry { border-bottom-color: #ccc !important; padding: 5pt 0 7pt; }
+    .work-company { color: #000 !important; font-size: 11pt; }
+    .work-ticker { color: #047857 !important; }
+    .work-period { color: #047857 !important; font-size: 9pt; }
+    .work-title { color: #555 !important; font-size: 9.5pt; }
+    .work-title .k { color: #7e22ce !important; }
+    .work-title .v { color: #c2410c !important; }
+    .work-duration { color: #888 !important; }
+    .work-scope { color: #1a1a1a !important; font-size: 9.5pt; }
+    .work-scope strong { color: #000 !important; }
+
     .edu { color: #1a1a1a !important; font-size: 9.5pt; }
     .edu .deg { color: #c2410c !important; }
     .edu .meta { color: #555 !important; }
@@ -537,17 +590,34 @@
     <!-- Summary -->
     <h2 class="section"><span class="lang-en">summary</span><span class="lang-th">สรุป</span></h2>
     <p class="summary">
-      <span class="lang-en">Backend Developer with <span class="hl">2+ years</span> delivering production systems at
-      <span class="hl">national government scale</span> — <span class="hl">bootstrapped all three services</span> of
+      <span class="lang-en">Software Engineer specializing in backend systems with <span class="hl">2 years 8 months</span> at
+      <span class="hl">Internet Thailand PCL (INET)</span> — <span class="hl">bootstrapped all three services</span> of
       Thailand's national EMS platform (NIEMS) from scratch, now serving all health zones and provinces
-      nationwide. Also contributes to enterprise document services at Softway. Specializes in
+      nationwide. Also delivers enterprise document services on the Softway ONLYOFFICE platform. Specializes in
       cross-service integration, multi-role government workflows, and <span class="hl">Hexagonal Architecture</span>.</span>
-      <span class="lang-th">Backend Developer ประสบการณ์ <span class="hl">2+ ปี</span> ส่งมอบระบบ production ระดับ
-      <span class="hl">หน่วยงานรัฐบาลทั่วประเทศ</span> — <span class="hl">สร้างทั้ง 3 บริการ</span>ของ
-      ระบบ EMS แห่งชาติ (NIEMS) ตั้งแต่ต้น ปัจจุบันให้บริการครอบคลุมทุกเขตสุขภาพ
-      และทุกจังหวัดทั่วประเทศ นอกจากนี้ยังร่วมพัฒนาบริการจัดการเอกสารระดับ organization ที่ Softway
+      <span class="lang-th">Software Engineer เชี่ยวชาญด้าน backend ประสบการณ์ <span class="hl">2 ปี 8 เดือน</span> ที่
+      <span class="hl">Internet Thailand PCL (INET)</span> — <span class="hl">สร้างทั้ง 3 บริการ</span>ของ
+      ระบบ EMS แห่งชาติ (NIEMS) ตั้งแต่ต้น ปัจจุบันให้บริการครอบคลุมทุกเขตสุขภาพและทุกจังหวัดทั่วประเทศ
+      นอกจากนี้ยังพัฒนาระบบจัดการเอกสาร ONLYOFFICE บน Softway platform
       เชี่ยวชาญด้านการเชื่อมต่อระหว่าง service, workflow งานราชการที่มีหลาย role และ <span class="hl">Hexagonal Architecture</span></span>
     </p>
+
+    <!-- Work Experience -->
+    <h2 class="section"><span class="lang-en">work experience</span><span class="lang-th">ประสบการณ์การทำงาน</span></h2>
+    <div class="work-entry">
+      <div class="work-head">
+        <span class="work-company">Internet Thailand PCL <span class="work-ticker">(INET)</span></span>
+        <span class="work-period"><span class="lang-en">Sep 2023 – Present</span><span class="lang-th">ก.ย. 2566 – ปัจจุบัน</span></span>
+      </div>
+      <div class="work-title">
+        <span class="k">title</span>: <span class="v">"Software Engineer"</span>
+        <span class="work-duration"><span class="lang-en">· 2 yrs 8 mos</span><span class="lang-th">· 2 ปี 8 เดือน</span></span>
+      </div>
+      <div class="work-scope">
+        <span class="lang-en">Backend development across two product lines: <strong>NIEMS national EMS platform</strong> (3 Go services, bootstrapped from scratch) and <strong>Softway ONLYOFFICE</strong> (TypeScript/NestJS document collaboration platform).</span>
+        <span class="lang-th">พัฒนา backend ใน 2 product line: <strong>ระบบ EMS แห่งชาติ NIEMS</strong> (3 Go services สร้างตั้งแต่ต้น) และ <strong>Softway ONLYOFFICE</strong> (แพลตฟอร์มจัดการเอกสาร TypeScript/NestJS)</span>
+      </div>
+    </div>
 
     <!-- Skills -->
     <h2 class="section"><span class="lang-en">technical skills</span><span class="lang-th">ทักษะทางเทคนิค</span></h2>
