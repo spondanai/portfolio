@@ -82,10 +82,31 @@ function ReadmeSection({ onOpen }) {
 
       <h2 className="fade-in d5">whoami</h2>
       <p className="fade-in d5">
-        Backend developer with <span className="link" onClick={() => onOpen("about.ts")}>about.ts</span> years
-        of experience building production systems in Go and TypeScript.
-        I care about clean architecture, well-documented APIs, and services that don't wake people up at 3am.
+        Hi, I'm <strong style={{ color: "var(--fg-bright)" }}>Spondanai</strong> — a Backend Developer based in
+        Chiangmai, Thailand with <span className="link" onClick={() => onOpen("about.ts")}>2 years 8 months</span> of
+        experience shipping production systems in <strong style={{ color: "var(--ty)" }}>Go</strong> and{" "}
+        <strong style={{ color: "#3178C6" }}>TypeScript</strong>.
       </p>
+      <p className="fade-in d5">
+        I bootstrapped and delivered all three backend services of{" "}
+        <strong style={{ color: "var(--accent-2)" }}>Thailand's national EMS platform (NIEMS)</strong> from scratch —
+        systems now running across every health zone and province nationwide. That includes a radio certification
+        registry, a training &amp; certificate lifecycle platform, and the central identity service that ties them
+        together.
+      </p>
+      <p className="fade-in d5">
+        Currently at <strong style={{ color: "var(--fn)" }}>Softway</strong>, building the orchestration backend
+        for an ONLYOFFICE document collaboration platform — 15 modules, real-time co-editing via webhooks,
+        70+ OneBox bridge endpoints, and an RS256/JWKS trust chain between services.
+      </p>
+
+      <h2 className="fade-in d5">what I care about</h2>
+      <ul className="readme-list fade-in d5">
+        <li><span style={{ color: "var(--kw)" }}>clean boundaries</span> — Hexagonal Architecture, Port/Adapter, one usecase layer shared across all delivery mechanisms</li>
+        <li><span style={{ color: "var(--kw)" }}>honest APIs</span> — well-typed contracts, Swagger docs, predictable error shapes</li>
+        <li><span style={{ color: "var(--kw)" }}>concurrency done right</span> — mutexes where needed, atomic transactions, no silent data races</li>
+        <li><span style={{ color: "var(--kw)" }}>systems that stay boring</span> — structured logs, health checks, graceful shutdown — services that don't wake people up at 3am</li>
+      </ul>
 
       <div className="btn-row fade-in d5">
         <button className="btn primary" onClick={() => onOpen("projects.json")}>
