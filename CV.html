@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Spondanai Rukwong — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #1e1e1e;
+    --bg-deep: #181818;
+    --bg-paper: #252526;
+    --border: #2b2b2b;
+    --border-strong: #3c3c3c;
+    --fg: #cccccc;
+    --fg-dim: #858585;
+    --fg-faint: #6e6e6e;
+    --fg-bright: #ffffff;
+    --accent: #007acc;
+    --accent-2: #4ec9b0;
+    --kw: #c586c0;
+    --st: #ce9178;
+    --fn: #dcdcaa;
+    --vr: #9cdcfe;
+    --ty: #4ec9b0;
+    --cm: #6a9955;
+    --term-green: #23d18b;
+    --font-mono: "JetBrains Mono", "IBM Plex Sans Thai", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font-ui: "Inter", "IBM Plex Sans Thai", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #0d0d0d;
+    color: var(--fg);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+    padding: 20px 14px 60px;
+  }
+
+  ::selection { background: #264f78; color: #fff; }
+
+  /* Language toggle ---------------------------------------------------- */
+  html[lang="en"] .lang-th { display: none; }
+  html[lang="th"] .lang-en { display: none; }
+  /* Thai content slightly tighter line-height */
+  html[lang="th"] .summary,
+  html[lang="th"] .proj-blurb { line-height: 1.6; }
+  html[lang="th"] body { font-feature-settings: "liga" 1; }
+
+  .lang-btn { min-width: 56px; justify-content: center; }
+  .lang-btn .cur { color: var(--fg-bright); font-weight: 700; }
+  .lang-btn .sep { color: var(--fg-faint); margin: 0 4px; }
+
+  /* Toolbar (screen only) ----------------------------------------------- */
+  .toolbar {
+    max-width: 820px;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 11px;
+    background: var(--bg-paper);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--fg-dim);
+  }
+  .toolbar .crumbs { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .toolbar .crumbs .at { color: var(--st); }
+  .toolbar .crumbs .file { color: var(--fg-bright); margin-left: 4px; }
+  .toolbar a.btn, .toolbar button.btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--fg);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    cursor: pointer; text-decoration: none;
+    transition: background .12s, border-color .12s, color .12s;
+  }
+  .toolbar a.btn:hover, .toolbar button.btn:hover { background: #383838; color: var(--fg-bright); border-color: #555; }
+  .toolbar .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .toolbar .btn.primary:hover { background: #1f8fd9; }
+
+  /* ── Page (single A4-ish) ───────────────────────────────────────────── */
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    padding: 30px 38px 28px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  }
+
+  /* Header --------------------------------------------------------------- */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-strong);
+    margin-bottom: 14px;
+  }
+  .prompt-line {
+    font-family: var(--font-mono);
+    color: var(--cm);
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  .prompt-line .user { color: var(--term-green); }
+  .prompt-line .host { color: var(--accent); }
+  .prompt-line .path { color: #f5f543; }
+  .prompt-line .sym { color: var(--kw); }
+
+  h1.name {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 26px;
+    margin: 0 0 2px;
+    color: var(--fg-bright);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  h1.name .at { color: var(--st); }
+  .role-line {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--cm);
+    margin-top: 4px;
+  }
+  .role-line .k { color: var(--kw); }
+  .role-line .v { color: var(--st); }
+  .role-line .pf {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid var(--border-strong);
+    color: var(--fg);
+  }
+  .role-line .pf a { color: var(--accent-2); text-decoration: none; font-weight: 600; }
+  .role-line .pf a:hover { text-decoration: underline; }
+  .role-line .pf .arrow { color: var(--fg-faint); margin-right: 4px; }
+
+  .contact-block {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--fg);
+    text-align: right;
+    line-height: 1.7;
+    white-space: nowrap;
+  }
+  .contact-block .row { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+  .contact-block .lbl { color: var(--cm); }
+  .contact-block a { color: var(--accent-2); text-decoration: none; }
+  .contact-block a:hover { text-decoration: underline; }
+
+  /* Section heading ----------------------------------------------------- */
+  h2.section {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--cm);
+    text-transform: lowercase;
+    margin: 14px 0 8px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  h2.section::before { content: "## "; color: var(--kw); font-weight: 700; }
+
+  /* Summary -------------------------------------------------------------- */
+  .summary {
+    font-family: var(--font-ui);
+    font-size: 12.5px;
+    color: var(--fg);
+    line-height: 1.55;
+    max-width: 75ch;
+  }
+  .summary .hl { color: var(--accent-2); font-weight: 600; }
+
+  /* Skills grid ---------------------------------------------------------- */
+  .skills {
+    display: grid;
+    grid-template-columns: 110px 1fr 100px 1fr;
+    column-gap: 14px;
+    row-gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    align-items: baseline;
+  }
+  .skills dt { color: var(--kw); margin: 0; }
+  .skills dd { margin: 0; color: var(--fg); }
+  .skills dd .sep { color: var(--fg-faint); }
+
+  /* Timeline (gantt) ---------------------------------------------------- */
+  .timeline {
+    margin: 4px 0 10px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+  }
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: 130px 1fr 100px;
+    gap: 4px 10px;
+    align-items: center;
+  }
+  .tl-scale {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: space-between;
+    color: var(--fg-faint);
+    font-size: 9.5px;
+    padding: 0 2px 2px;
+    border-bottom: 1px dashed var(--border-strong);
+    margin-bottom: 4px;
+  }
+  .tl-label {
+    color: var(--fg);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px;
+  }
+  .tl-label .tag {
+    color: var(--fg-faint);
+    font-size: 9.5px;
+    margin-left: 4px;
+  }
+  .tl-track {
+    position: relative;
+    height: 10px;
+    background: var(--bg-deep);
+    border-radius: 5px;
+    border: 1px solid var(--border-strong);
+    overflow: visible;
+  }
+  .tl-bar {
+    position: absolute;
+    top: 0; bottom: 0;
+    background: var(--accent-2);
+    border-radius: 3px;
+    min-width: 4px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
+  }
+  .tl-bar.softway { background: #3178C6; }
+  .tl-bar.personal { background: #5865F2; }
+  .tl-bar.ongoing::after {
+    content: "";
+    position: absolute;
+    right: -2px;
+    top: 0; bottom: 0;
+    width: 4px;
+    background: inherit;
+    border-radius: 0 3px 3px 0;
+    animation: tlblink 1.2s steps(1) infinite;
+  }
+  @keyframes tlblink { 50% { opacity: 0.3; } }
+  .tl-dates { color: var(--cm); font-size: 10px; text-align: right; white-space: nowrap; }
+  .tl-legend {
+    display: flex; gap: 14px;
+    margin-top: 6px;
+    color: var(--fg-dim); font-size: 10px;
+    justify-content: flex-end;
+  }
+  .tl-legend .sw { display: inline-block; width: 8px; height: 8px; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
+
+  /* Project row dates --------------------------------------------------- */
+  .proj-dates {
+    color: var(--cm);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    white-space: nowrap;
+  }
+  .proj-dates.ongoing { color: var(--term-green); }
+
+  /* Projects: compact rows + ecosystem groups --------------------------- */
+  .eco-group {
+    margin-top: 10px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .eco-label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--accent-2);
+    margin: 0 0 6px;
+    padding: 3px 8px;
+    background: var(--bg-deep);
+    border: 1px solid var(--border-strong);
+    border-left: 3px solid var(--accent-2);
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .eco-label .cnt { color: var(--cm); margin-left: 6px; font-weight: 400; }
+
+  .proj-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 7px 0 8px;
+    border-bottom: 1px dashed var(--border-strong);
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .proj-row:last-child { border-bottom: 0; }
+
+  .proj-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .proj-name {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--fn);
+    font-size: 12.5px;
+    flex-shrink: 0;
+  }
+  .proj-stack {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ty);
+    margin-left: auto;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .proj-stack .dot { color: var(--fg-faint); margin: 0 4px; }
+  .proj-blurb {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--fg);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .proj-blurb b { color: var(--fg-bright); font-weight: 600; }
+
+  .projects-cta {
+    margin-top: 12px;
+    padding: 8px 10px;
+    background: var(--bg-deep);
+    border: 1px dashed var(--border-strong);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--fg);
+    text-align: center;
+  }
+  .projects-cta a {
+    color: var(--accent-2);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .projects-cta a:hover { text-decoration: underline; }
+  .projects-cta .arrow { color: var(--kw); margin-right: 4px; }
+
+  /* Education ----------------------------------------------------------- */
+  .edu {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--fg);
+  }
+  .edu .deg { color: var(--st); }
+  .edu .meta { color: var(--cm); }
+
+  /* Footer -------------------------------------------------------------- */
+  .footer {
+    margin-top: 16px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-strong);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--cm);
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive (screen) ------------------------------------------------- */
+  @media (max-width: 720px) {
+    body { padding: 12px 6px 60px; }
+    .page { padding: 22px 18px 22px; }
+    .header { grid-template-columns: 1fr; }
+    .contact-block { text-align: left; }
+    .contact-block .row { justify-content: flex-start; }
+    .role-line .pf { display: block; margin-left: 0; padding-left: 0; border-left: 0; margin-top: 4px; }
+    .skills { grid-template-columns: 110px 1fr; }
+    .proj-stack { margin-left: 0; }
+  }
+
+  /* ── PRINT ──────────────────────────────────────────────────────────── */
+  @media print {
+    @page { size: A4; margin: 14mm 15mm; }
+    html, body {
+      background: #fff !important;
+      color: #1a1a1a !important;
+      font-size: 10pt;
+      padding: 0;
+    }
+    .toolbar { display: none !important; }
+    .page {
+      max-width: none;
+      margin: 0;
+      background: #fff !important;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
+      border-radius: 0;
+    }
+    .header { border-bottom-color: #999 !important; padding-bottom: 8pt; margin-bottom: 8pt; }
+    h1.name { color: #000 !important; font-size: 18pt; }
+    h1.name .at { color: #c2410c !important; }
+    .role-line { color: #555 !important; }
+    .role-line .k { color: #7e22ce !important; }
+    .role-line .v { color: #c2410c !important; }
+    .role-line .pf { border-left-color: #ccc !important; color: #1a1a1a !important; }
+    .role-line .pf a { color: #047857 !important; font-weight: 700; }
+    .role-line .pf .arrow { color: #888 !important; }
+    .prompt-line, .prompt-line * { color: #666 !important; }
+
+    .contact-block { color: #1a1a1a !important; font-size: 9pt; }
+    .contact-block .lbl { color: #555 !important; }
+    .contact-block a { color: #1d4ed8 !important; text-decoration: none; }
+
+    h2.section {
+      color: #1f2937 !important;
+      font-size: 10.5pt;
+      font-weight: 600;
+      margin: 10pt 0 5pt;
+    }
+    h2.section::before { color: #7e22ce !important; }
+
+    .summary { color: #1a1a1a !important; font-size: 10pt; }
+    .summary .hl { color: #047857 !important; }
+
+    .skills { font-size: 9.5pt; }
+    .skills dt { color: #7e22ce !important; }
+    .skills dd { color: #1a1a1a !important; }
+    .skills dd .sep { color: #888 !important; }
+
+    .timeline { font-size: 8.5pt; margin: 2pt 0 6pt; }
+    .tl-scale { color: #888 !important; border-bottom-color: #ccc !important; font-size: 7.5pt; }
+    .tl-label { color: #1a1a1a !important; font-size: 8.5pt; }
+    .tl-label .tag { color: #888 !important; }
+    .tl-track { background: #f5f5f5 !important; border-color: #ccc !important; }
+    .tl-bar { background: #0a7e5a !important; box-shadow: none !important; }
+    .tl-bar.softway { background: #1d4ed8 !important; }
+    .tl-bar.personal { background: #4338ca !important; }
+    .tl-bar.ongoing::after { display: none !important; }
+    .tl-dates { color: #555 !important; font-size: 8pt; }
+    .tl-legend { color: #555 !important; font-size: 7.5pt; }
+
+    .proj-dates { color: #555 !important; font-size: 8.5pt; }
+    .proj-dates.ongoing { color: #047857 !important; }
+
+    .eco-label {
+      background: #f5f5f5 !important;
+      border: 1px solid #ccc !important;
+      border-left: 3px solid #047857 !important;
+      color: #047857 !important;
+      font-size: 9.5pt;
+    }
+    .eco-label .cnt { color: #555 !important; }
+
+    .proj-row { border-bottom-color: #ccc !important; padding: 5pt 0 6pt; page-break-inside: avoid; }
+    .proj-name { color: #1a1a1a !important; font-size: 10.5pt; }
+    .proj-stack { color: #047857 !important; font-size: 9pt; }
+    .proj-stack .dot { color: #888 !important; }
+    .proj-blurb { color: #1a1a1a !important; font-size: 9.5pt; }
+    .proj-blurb b { color: #000 !important; }
+
+    .projects-cta {
+      background: #f9f9f9 !important;
+      border-color: #ccc !important;
+      color: #1a1a1a !important;
+      font-size: 9.5pt;
+      margin-top: 6pt;
+      padding: 5pt 8pt;
+    }
+    .projects-cta a { color: #1d4ed8 !important; }
+    .projects-cta .arrow { color: #7e22ce !important; }
+
+    .edu { color: #1a1a1a !important; font-size: 9.5pt; }
+    .edu .deg { color: #c2410c !important; }
+    .edu .meta { color: #555 !important; }
+
+    .footer { color: #555 !important; border-top-color: #aaa !important; font-size: 8.5pt; margin-top: 8pt; }
+    a { text-decoration: none !important; color: #1d4ed8 !important; }
+    ::selection { background: transparent; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Toolbar (screen only) -->
+  <div class="toolbar">
+    <span class="crumbs"><span class="at">~</span> › spondanai › <span class="file">CV.md</span></span>
+    <a href="index.html" class="btn"><span class="lang-en">← back to portfolio</span><span class="lang-th">← กลับไปพอร์ต</span></a>
+    <button class="btn lang-btn" id="lang-toggle" type="button" aria-label="Toggle language">
+      <span class="lang-en"><span class="cur">EN</span><span class="sep">/</span>ไทย</span>
+      <span class="lang-th">EN<span class="sep">/</span><span class="cur">ไทย</span></span>
+    </button>
+    <button class="btn primary" onclick="window.print()" type="button"><span class="lang-en">⌘P · print / save PDF</span><span class="lang-th">⌘P · พิมพ์ / บันทึก PDF</span></button>
+  </div>
+
+  <article class="page">
+
+    <!-- Header -->
+    <header class="header">
+      <div>
+        <div class="prompt-line">
+          <span class="user">spondanai</span>@<span class="host">portfolio</span>:<span class="path">~</span><span class="sym">$</span> cat CV.md
+        </div>
+        <h1 class="name"><span class="at">$</span> <span class="lang-en">Spondanai Rukwong</span><span class="lang-th">สพลดนัย รักวงค์</span></h1>
+        <div class="role-line">
+          <span class="k">role</span>: <span class="v">"Backend Developer"</span>
+          <span class="pf"><span class="arrow">↗</span><a href="index.html">spondanai.dev</a></span>
+        </div>
+      </div>
+      <div class="contact-block">
+        <div class="row"><span class="lbl">📍</span> <span class="lang-en">Chiangmai, Thailand</span><span class="lang-th">เชียงใหม่, ประเทศไทย</span></div>
+        <div class="row"><span class="lbl">✉</span> <a href="mailto:bs.rukwong@gmail.com">bs.rukwong@gmail.com</a></div>
+        <div class="row"><span class="lbl">⎇</span> <a href="https://github.com/spondanai" target="_blank" rel="noopener">github.com/spondanai</a></div>
+      </div>
+    </header>
+
+    <!-- Summary -->
+    <h2 class="section"><span class="lang-en">summary</span><span class="lang-th">สรุป</span></h2>
+    <p class="summary">
+      <span class="lang-en">Backend Developer with <span class="hl">2+ years</span> delivering production systems at
+      <span class="hl">national government scale</span> — <span class="hl">bootstrapped all three services</span> of
+      Thailand's national EMS platform (NIEMS) from scratch, now serving all health zones and provinces
+      nationwide. Also contributes to enterprise document services at Softway. Specializes in
+      cross-service integration, multi-role government workflows, and <span class="hl">Hexagonal Architecture</span>.</span>
+      <span class="lang-th">Backend Developer ประสบการณ์ <span class="hl">2+ ปี</span> ส่งมอบระบบ production ระดับ
+      <span class="hl">หน่วยงานรัฐบาลทั่วประเทศ</span> — <span class="hl">สร้างทั้ง 3 บริการ</span>ของ
+      ระบบ EMS แห่งชาติ (NIEMS) ตั้งแต่ต้น ปัจจุบันให้บริการครอบคลุมทุกเขตสุขภาพ
+      และทุกจังหวัดทั่วประเทศ นอกจากนี้ยังร่วมพัฒนาบริการจัดการเอกสารระดับ organization ที่ Softway
+      เชี่ยวชาญด้านการเชื่อมต่อระหว่าง service, workflow งานราชการที่มีหลาย role และ <span class="hl">Hexagonal Architecture</span></span>
+    </p>
+
+    <!-- Skills -->
+    <h2 class="section"><span class="lang-en">technical skills</span><span class="lang-th">ทักษะทางเทคนิค</span></h2>
+    <dl class="skills">
+      <dt><span class="lang-en">languages</span><span class="lang-th">ภาษา</span></dt><dd>Go <span class="sep">·</span> TypeScript <span class="sep">·</span> SQL</dd>
+      <dt><span class="lang-en">databases</span><span class="lang-th">ฐานข้อมูล</span></dt><dd>PostgreSQL <span class="sep">·</span> Redis</dd>
+
+      <dt><span class="lang-en">frameworks</span><span class="lang-th">เฟรมเวิร์ก</span></dt><dd>Fiber <span class="sep">·</span> NestJS <span class="sep">·</span> TypeORM</dd>
+      <dt><span class="lang-en">cloud / ops</span><span class="lang-th">คลาวด์ / ops</span></dt><dd>AWS S3 <span class="sep">·</span> Docker <span class="sep">·</span> Git</dd>
+
+      <dt><span class="lang-en">api &amp; auth</span><span class="lang-th">API &amp; auth</span></dt><dd>REST <span class="sep">·</span> JWT / OAuth <span class="sep">·</span> RS256 <span class="sep">·</span> JWKS <span class="sep">·</span> Swagger</dd>
+      <dt><span class="lang-en">patterns</span><span class="lang-th">รูปแบบ</span></dt><dd>Hexagonal Arch. <span class="sep">·</span> Port / Adapter <span class="sep">·</span> Multi-service Integration</dd>
+    </dl>
+
+    <!-- Project timeline -->
+    <h2 class="section"><span class="lang-en">timeline</span><span class="lang-th">ไทม์ไลน์</span></h2>
+    <div class="timeline">
+      <div class="timeline-grid">
+        <div></div>
+        <div class="tl-scale">
+          <span>2023</span><span>2024</span><span>2025</span><span>2026</span>
+        </div>
+        <div></div>
+
+        <div class="tl-label">I-DEMS Core <span class="tag">NIEMS</span></div>
+        <div class="tl-track"><div class="tl-bar" style="left: 0%; width: 70%"></div></div>
+        <div class="tl-dates">Nov '23 – Aug '25</div>
+
+        <div class="tl-label">Radio Certification <span class="tag">NIEMS</span></div>
+        <div class="tl-track"><div class="tl-bar" style="left: 40%; width: 20%"></div></div>
+        <div class="tl-dates">Nov '24 – May '25</div>
+
+        <div class="tl-label">TREMT System <span class="tag">NIEMS</span></div>
+        <div class="tl-track"><div class="tl-bar" style="left: 46.67%; width: 50%"></div></div>
+        <div class="tl-dates">Jan '25 – Apr '26</div>
+
+        <div class="tl-label">ONLYOFFICE Core <span class="tag">Softway</span></div>
+        <div class="tl-track"><div class="tl-bar softway ongoing" style="left: 96.67%; width: 3.33%"></div></div>
+        <div class="tl-dates ongoing" style="color: var(--term-green)"><span class="lang-en">Apr '26 – Present</span><span class="lang-th">เม.ย. '26 – ปัจจุบัน</span></div>
+
+        <div class="tl-label">Authentication Service <span class="tag">Softway</span></div>
+        <div class="tl-track"><div class="tl-bar softway ongoing" style="left: 96.67%; width: 3.33%"></div></div>
+        <div class="tl-dates ongoing" style="color: var(--term-green)"><span class="lang-en">Apr '26 – Present</span><span class="lang-th">เม.ย. '26 – ปัจจุบัน</span></div>
+
+        <div class="tl-label">Discord Clipper Bot <span class="tag"><span class="lang-en">Personal</span><span class="lang-th">ส่วนตัว</span></span></div>
+        <div class="tl-track"><div class="tl-bar personal ongoing" style="left: 86.67%; width: 13.33%"></div></div>
+        <div class="tl-dates ongoing" style="color: var(--term-green)"><span class="lang-en">Jan '26 – Present</span><span class="lang-th">ม.ค. '26 – ปัจจุบัน</span></div>
+      </div>
+      <div class="tl-legend">
+        <span><span class="sw" style="background: var(--accent-2)"></span>NIEMS</span>
+        <span><span class="sw" style="background: #3178C6"></span>Softway</span>
+        <span><span class="sw" style="background: #5865F2"></span><span class="lang-en">Personal</span><span class="lang-th">ส่วนตัว</span></span>
+        <span style="color: var(--term-green)">● <span class="lang-en">ongoing</span><span class="lang-th">กำลังดำเนินการ</span></span>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <h2 class="section"><span class="lang-en">projects</span><span class="lang-th">โปรเจกต์</span></h2>
+
+    <div class="eco-group">
+      <div class="eco-label"><span class="lang-en">NIEMS EMS Platform <span class="cnt">// National Government · Thailand-wide · 3 services, all bootstrapped from scratch</span></span><span class="lang-th">ระบบ EMS ของ NIEMS <span class="cnt">// หน่วยงานรัฐ · ทั่วประเทศไทย · 3 บริการ สร้างตั้งแต่ต้นทั้งหมด</span></span></div>
+
+      <div class="proj-row">
+        <div class="proj-head">
+          <span class="proj-name"><span class="lang-en">Radio Certification System</span><span class="lang-th">ระบบรับรองวิทยุสื่อสาร EMS</span></span>
+          <span class="proj-dates">Nov '24 – May '25</span>
+          <span class="proj-stack">Go <span class="dot">·</span> Fiber <span class="dot">·</span> PostgreSQL <span class="dot">·</span> WebSocket</span>
+        </div>
+        <div class="proj-blurb">
+          <span class="lang-en">Thailand-wide government backend for NIEMS — certifies <b>EMS radio equipment and operators</b> across all health zones and provinces. 5-tier approval workflow (operation unit → area → national → secretary → executive), province-level frequency registry, and analytics dashboards from unit level to national.</span>
+          <span class="lang-th">Backend ระดับชาติของ NIEMS — รับรอง <b>อุปกรณ์วิทยุและพนักงานสื่อสาร EMS</b> ทั่วทุกเขตสุขภาพและทุกจังหวัด workflow อนุมัติ 5 ลำดับ (หน่วยปฏิบัติการ → เขต → ระดับชาติ → เลขาธิการ → ผู้บริหาร) ทะเบียนความถี่ระดับจังหวัด และแดชบอร์ดวิเคราะห์ตั้งแต่ระดับหน่วยถึงระดับชาติ</span>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-head">
+          <span class="proj-name"><span class="lang-en">TREMT System</span><span class="lang-th">ระบบ TREMT</span></span>
+          <span class="proj-dates">Jan '25 – Apr '26</span>
+          <span class="proj-stack">Go <span class="dot">·</span> Fiber <span class="dot">·</span> PostgreSQL <span class="dot">·</span> Docker</span>
+        </div>
+        <div class="proj-blurb">
+          <span class="lang-en"><b>National EMS training platform</b> under NIEMS — manages certification lifecycle for emergency medical personnel across government and private operation units nationwide. Course enrollment, e-signed PDF certificates, and automated reporting.</span>
+          <span class="lang-th"><b>แพลตฟอร์มฝึกอบรม EMS ระดับชาติ</b> ภายใต้ NIEMS — บริหารจัดการวงจรการรับรองบุคลากรการแพทย์ฉุกเฉินทั้งหน่วยงานรัฐและเอกชนทั่วประเทศ ลงทะเบียนหลักสูตร ออกใบประกาศนียบัตร PDF พร้อมลายเซ็นอิเล็กทรอนิกส์ และระบบรายงานอัตโนมัติ</span>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-head">
+          <span class="proj-name"><span class="lang-en">I-DEMS Core Service</span><span class="lang-th">I-DEMS Core Service</span></span>
+          <span class="proj-dates">Nov '23 – Aug '25</span>
+          <span class="proj-stack">Go <span class="dot">·</span> Fiber <span class="dot">·</span> PostgreSQL <span class="dot">·</span> JWT</span>
+        </div>
+        <div class="proj-blurb">
+          <span class="lang-en"><b>Foundation identity layer</b> for the national EMS platform — single source of truth for all operation units, affiliations, and health-zone mappings across Thailand. Consumed by Radio Certification at login via bidirectional internal APIs.</span>
+          <span class="lang-th"><b>Layer ระบุตัวตนพื้นฐาน</b> ของแพลตฟอร์ม EMS ระดับชาติ — แหล่งข้อมูลกลางของหน่วยปฏิบัติการ การสังกัด และการ mapping เขตสุขภาพทั่วประเทศ ถูกเรียกใช้โดย Radio Certification ตอน login ผ่าน internal API แบบ bidirectional</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-group">
+      <div class="eco-label"><span class="lang-en">Softway ONLYOFFICE Platform <span class="cnt">// 2 services, working together</span></span><span class="lang-th">Softway ONLYOFFICE Platform <span class="cnt">// 2 บริการ ทำงานร่วมกัน</span></span></div>
+
+      <div class="proj-row">
+        <div class="proj-head">
+          <span class="proj-name">ONLYOFFICE Core Service</span>
+          <span class="proj-dates ongoing"><span class="lang-en">Apr '26 – Present</span><span class="lang-th">เม.ย. '26 – ปัจจุบัน</span></span>
+          <span class="proj-stack">TypeScript <span class="dot">·</span> NestJS <span class="dot">·</span> PostgreSQL <span class="dot">·</span> AWS S3</span>
+        </div>
+        <div class="proj-blurb">
+          <span class="lang-en"><b>Document collaboration hub</b> integrating ONLYOFFICE server, OneBox cloud storage, and OnePlatform notifications — real-time co-editing, version control, and compliance logging.</span>
+          <span class="lang-th"><b>ศูนย์กลางการทำงานเอกสารร่วมกัน</b> เชื่อม ONLYOFFICE server, OneBox cloud storage และ OnePlatform notifications — แก้ไขเอกสารร่วมกันแบบเรียลไทม์ ควบคุมเวอร์ชัน และ logging สำหรับ compliance</span>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-head">
+          <span class="proj-name"><span class="lang-en">Authentication Service</span><span class="lang-th">บริการยืนยันตัวตน</span></span>
+          <span class="proj-dates ongoing"><span class="lang-en">Apr '26 – Present</span><span class="lang-th">เม.ย. '26 – ปัจจุบัน</span></span>
+          <span class="proj-stack">Go <span class="dot">·</span> Fiber <span class="dot">·</span> PostgreSQL <span class="dot">·</span> Redis <span class="dot">·</span> RS256 JWT</span>
+        </div>
+        <div class="proj-blurb">
+          <span class="lang-en"><b>OAuth service powering the ONLYOFFICE platform</b> — issues RS256 JWT, exposes JWKS endpoint consumed by Core for stateless token verification, with Hexagonal Architecture.</span>
+          <span class="lang-th"><b>OAuth service ขับเคลื่อนแพลตฟอร์ม ONLYOFFICE</b> — ออก JWT แบบ RS256 และเปิด JWKS endpoint ให้ Core ใช้ตรวจสอบ token แบบ stateless พร้อม Hexagonal Architecture</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-group">
+      <div class="eco-label" style="color: #818cf8; border-left-color: #5865F2;">
+        <span class="lang-en">Personal Project <span class="cnt">// solo, production</span></span>
+        <span class="lang-th">โปรเจกต์ส่วนตัว <span class="cnt">// พัฒนาคนเดียว, production</span></span>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-head">
+          <span class="proj-name" style="color: #818cf8;">Discord Clipper Bot Platform</span>
+          <span class="proj-dates ongoing"><span class="lang-en">Jan '26 – Present</span><span class="lang-th">ม.ค. '26 – ปัจจุบัน</span></span>
+          <span class="proj-stack">Go <span class="dot">·</span> Fiber <span class="dot">·</span> discordgo <span class="dot">·</span> PostgreSQL</span>
+        </div>
+        <div class="proj-blurb">
+          <span class="lang-en"><b>Production Discord bot + REST API</b> for managing a content-creator community — tiered CPM payout engine, multi-platform view tracking (TikTok/YouTube), atomic withdraw flow, and full Discord ticket workflow. Dual-delivery Clean Architecture; deployed on Fly.io.
+          <a href="https://github.com/spondanai/discord-clipper-bot-showcase" target="_blank" rel="noopener" style="color: var(--accent-2); margin-left: 6px; font-size: 11px; font-family: var(--font-mono); white-space: nowrap;">⎇ showcase →</a></span>
+          <span class="lang-th"><b>Discord bot + REST API สำหรับ production</b> บริหารชุมชน content creator — เครื่องมือคำนวณจ่าย CPM แบบ tier, ติดตาม views หลาย platform (TikTok/YouTube), ระบบถอนเงินแบบ atomic และ workflow ตั๋ว Discord แบบครบวงจร ใช้ Clean Architecture; deploy บน Fly.io
+          <a href="https://github.com/spondanai/discord-clipper-bot-showcase" target="_blank" rel="noopener" style="color: var(--accent-2); margin-left: 6px; font-size: 11px; font-family: var(--font-mono); white-space: nowrap;">⎇ showcase →</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="projects-cta">
+      <span class="arrow">→</span> <span class="lang-en">Full project details, tech deep-dives, and interactive demo at <a href="index.html">spondanai.dev</a></span><span class="lang-th">รายละเอียดโปรเจกต์ทั้งหมด เจาะลึกเชิง tech และ demo แบบ interactive ที่ <a href="index.html">spondanai.dev</a></span>
+    </div>
+
+    <!-- Education -->
+    <h2 class="section"><span class="lang-en">education</span><span class="lang-th">การศึกษา</span></h2>
+    <div class="edu">
+      <span class="lang-en"><span class="deg">B.Eng.</span> Computer Engineering <span class="meta">· University of Phayao</span></span>
+      <span class="lang-th"><span class="deg">วศ.บ.</span> วิศวกรรมคอมพิวเตอร์ <span class="meta">· มหาวิทยาลัยพะเยา</span></span>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span><span class="lang-en">// references &amp; deep-dives available on request</span><span class="lang-th">// ขอ references และข้อมูลเชิงลึกได้ตามต้องการ</span></span>
+    </div>
+
+  </article>
+
+<script>
+  (function() {
+    var html = document.documentElement;
+    var KEY = 'cv-lang';
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    if (saved === 'th' || saved === 'en') html.setAttribute('lang', saved);
+    var btn = document.getElementById('lang-toggle');
+    if (btn) btn.addEventListener('click', function() {
+      var next = html.getAttribute('lang') === 'th' ? 'en' : 'th';
+      html.setAttribute('lang', next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
