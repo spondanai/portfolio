@@ -149,8 +149,9 @@ const SKILLS = [
   {
     cat: "Languages",
     items: [
-      { name: "Go", level: 0.85, yrs: "2y" },
-      { name: "TypeScript", level: 0.8, yrs: "2y" },
+      { name: "Go", level: 0.85, yrs: "2y+" },
+      { name: "TypeScript", level: 0.75, yrs: "1y+" },
+      { name: "Node.js", level: 0.7, yrs: "1y+" },
       { name: "SQL", level: 0.75, yrs: "2y+" },
     ],
   },
