@@ -311,15 +311,16 @@
     overflow: auto;
     min-height: 0;
     min-width: 0;
-    position: relative;
+    display: flex;
+    align-items: flex-start;
     background: var(--bg);
   }
   .editor-overlay-gutter {
-    position: absolute;
-    left: 0;
-    top: 0;
+    flex-shrink: 0;
+    align-self: stretch;
+    overflow: hidden;
     width: 52px;
-    padding: 12px 10px 120px 12px;
+    padding: 12px 10px 0 12px;
     display: flex;
     flex-direction: column;
     font-family: var(--font-mono);
@@ -334,10 +335,9 @@
     z-index: 1;
   }
   .editor-overlay-gutter span { display: block; height: var(--line-h); }
-  .editor-content { padding-left: 52px; min-width: 0; }
+  .editor-content { flex: 1; min-width: 0; }
   @media (max-width: 760px) {
-    .editor-overlay-gutter { width: 38px; padding: 12px 6px 120px 6px; font-size: 11px; }
-    .editor-content { padding-left: 38px; }
+    .editor-overlay-gutter { width: 38px; padding: 12px 6px 0 6px; font-size: 11px; }
   }
   .editor-inner {
     display: flex;
@@ -760,9 +760,9 @@
 <body>
   <div id="root"></div>
 
-  <script type="text/babel" src="tweaks-panel.jsx?v=6"></script>
-  <script type="text/babel" src="data.jsx?v=6"></script>
-  <script type="text/babel" src="sections.jsx?v=6"></script>
-  <script type="text/babel" src="portfolio.jsx?v=6"></script>
+  <script type="text/babel" src="tweaks-panel.jsx?v=7"></script>
+  <script type="text/babel" src="data.jsx?v=7"></script>
+  <script type="text/babel" src="sections.jsx?v=7"></script>
+  <script type="text/babel" src="portfolio.jsx?v=7"></script>
 </body>
 </html>
