@@ -693,12 +693,17 @@
 
   /* Animations on mount */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-  .fade-in { animation: fadeUp .35s ease both; }
+  .fade-in { animation: fadeUp .35s ease forwards; }
   .fade-in.d1 { animation-delay: .05s; }
   .fade-in.d2 { animation-delay: .10s; }
   .fade-in.d3 { animation-delay: .15s; }
   .fade-in.d4 { animation-delay: .20s; }
   .fade-in.d5 { animation-delay: .25s; }
+  /* If animation is skipped (prefers-reduced-motion, old browser), ensure content is visible */
+  @media (prefers-reduced-motion: reduce) { .fade-in { animation: none; } }
+  @supports not (animation-name: fadeUp) { .fade-in { opacity: 1; } }
+  /* On mobile disable entrance animations — content must be immediately visible */
+  @media (max-width: 760px) { .fade-in, .fade-in.d1, .fade-in.d2, .fade-in.d3, .fade-in.d4, .fade-in.d5 { animation: none; } }
 
   /* Skills layout */
   .skills-grid {
