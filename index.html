@@ -151,6 +151,10 @@
   }
   .body.no-sidebar { grid-template-columns: 48px 0 1fr; }
   .body.no-sidebar .sidebar { display: none; }
+  /* Explicit grid placement — prevents display:none sidebar from breaking auto-placement */
+  .body > .activitybar  { grid-column: 1; grid-row: 1; }
+  .body > .sidebar      { grid-column: 2; grid-row: 1; }
+  .body > .editor-area  { grid-column: 3; grid-row: 1; }
 
   /* Activity bar */
   .activitybar {

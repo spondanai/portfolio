@@ -488,10 +488,10 @@ function App() {
 
       {/* Body ---------------------------------------------------------- */}
       <div className={"body " + (!sidebarOpen ? "no-sidebar" : isMobile ? "show-sidebar" : "")}>
-        {/* Mobile sidebar overlay — click to close */}
+        {/* Mobile sidebar overlay — click to close (grid-column:1 prevents auto-placement from pushing activitybar) */}
         {isMobile && sidebarOpen && (
           <div
-            style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", zIndex: 4 }}
+            style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", zIndex: 4, gridColumn: 1, gridRow: 1 }}
             onClick={() => setSidebarOpen(false)}
           />
         )}
