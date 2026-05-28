@@ -354,26 +354,22 @@ function Palette({ open, onClose, onAction }) {
 
 /* ---------------- App ---------------- */
 function App() {
+  const _isMob = typeof window !== "undefined" && window.matchMedia("(max-width: 760px)").matches;
+
   const [openTabs, setOpenTabs] = useState(["README.md"]);
   const [activeTab, setActiveTab] = useState("README.md");
   const [activitySection, setActivitySection] = useState("explorer");
-  const [sidebarOpen, setSidebarOpen] = useState(
-    () => typeof window === "undefined" || !window.matchMedia("(max-width: 760px)").matches
-  );
+  const [sidebarOpen, setSidebarOpen] = useState(!_isMob);
   const [folderOpen, setFolderOpen] = useState(new Set(["SPONDANAI-PORTFOLIO", "src", "profile", "data", "scripts"]));
-  const [termVisible, setTermVisible] = useState(
-    () => typeof window === "undefined" || !window.matchMedia("(max-width: 760px)").matches
-  );
+  const [termVisible, setTermVisible] = useState(!_isMob);
   const [termHeight, setTermHeight] = useState(220);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [theme, setTheme] = useState("darkplus");
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(max-width: 760px)").matches
-  );
+  const [isMobile, setIsMobile] = useState(_isMob);
   const [tweaks, setTweaks] = useTweaks(/*EDITMODE-BEGIN*/{
     "accent": "#007acc",
     "theme": "darkplus",
-    "showTerminal": true,
+    "showTerminal": !_isMob,
     "compactSidebar": false,
     "fontSize": 13
   }/*EDITMODE-END*/);
@@ -395,10 +391,8 @@ function App() {
     root.style.fontSize = tweaks.fontSize + "px";
   }, [tweaks]);
 
-  /* Terminal visibility from tweak — skip first run to preserve mobile init */
-  const termTweakInit = useRef(false);
+  /* Terminal visibility from tweak (user toggles via tweaks panel) */
   useEffect(() => {
-    if (!termTweakInit.current) { termTweakInit.current = true; return; }
     setTermVisible(tweaks.showTerminal);
   }, [tweaks.showTerminal]);
 
