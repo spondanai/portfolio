@@ -357,12 +357,19 @@ function App() {
   const [openTabs, setOpenTabs] = useState(["README.md"]);
   const [activeTab, setActiveTab] = useState("README.md");
   const [activitySection, setActivitySection] = useState("explorer");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(
+    () => typeof window === "undefined" || !window.matchMedia("(max-width: 760px)").matches
+  );
   const [folderOpen, setFolderOpen] = useState(new Set(["SPONDANAI-PORTFOLIO", "src", "profile", "data", "scripts"]));
-  const [termVisible, setTermVisible] = useState(true);
+  const [termVisible, setTermVisible] = useState(
+    () => typeof window === "undefined" || !window.matchMedia("(max-width: 760px)").matches
+  );
   const [termHeight, setTermHeight] = useState(220);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [theme, setTheme] = useState("darkplus");
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 760px)").matches
+  );
   const [tweaks, setTweaks] = useTweaks(/*EDITMODE-BEGIN*/{
     "accent": "#007acc",
     "theme": "darkplus",
@@ -388,10 +395,20 @@ function App() {
     root.style.fontSize = tweaks.fontSize + "px";
   }, [tweaks]);
 
-  /* Terminal visibility from tweak */
+  /* Terminal visibility from tweak — skip first run to preserve mobile init */
+  const termTweakInit = useRef(false);
   useEffect(() => {
+    if (!termTweakInit.current) { termTweakInit.current = true; return; }
     setTermVisible(tweaks.showTerminal);
   }, [tweaks.showTerminal]);
+
+  /* Reactive mobile breakpoint */
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 760px)");
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   /* Body height accounting for terminal */
   const editorAreaStyle = termVisible
@@ -452,7 +469,6 @@ function App() {
   }
 
   const currentFile = activeTab ? FILES[activeTab] : null;
-  const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 760px)").matches;
 
   return (
     <div className="ide">
@@ -472,6 +488,14 @@ function App() {
 
       {/* Body ---------------------------------------------------------- */}
       <div className={"body " + (!sidebarOpen ? "no-sidebar" : isMobile ? "show-sidebar" : "")}>
+        {/* Mobile sidebar overlay — click to close */}
+        {isMobile && sidebarOpen && (
+          <div
+            style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", zIndex: 4 }}
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
         {/* Activity bar */}
         <div className="activitybar">
           <button className={activitySection === "explorer" ? "active" : ""} onClick={() => { setActivitySection("explorer"); setSidebarOpen(true); }} title="Explorer (Ctrl+Shift+E)">

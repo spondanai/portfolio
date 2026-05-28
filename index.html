@@ -645,12 +645,8 @@
   @media (max-width: 760px) {
     .body { grid-template-columns: 40px 0 1fr; }
     .body.show-sidebar { grid-template-columns: 40px min(75vw, 280px) 1fr; }
-    .body.show-sidebar .sidebar { display: flex; position: relative; }
-    .body.show-sidebar::after {
-      content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.4);
-      z-index: 5; grid-column: 3; pointer-events: none;
-    }
-    .activitybar { padding-top: 4px; }
+    .body.show-sidebar .sidebar { display: flex; position: relative; z-index: 5; }
+    .activitybar { padding-top: 4px; position: relative; z-index: 5; }
     .activitybar button { width: 36px; height: 36px; }
     .titlebar .menu, .titlebar .traffic { display: none; }
     .titlebar .win-actions { display: none; }
@@ -665,6 +661,16 @@
     .statusbar { font-size: 11px; padding: 0 6px; gap: 6px; }
     .statusbar .item { padding: 0 4px; }
     .statusbar .item.hide-sm { display: none; }
+  }
+
+  /* Very small screens (phones < 480px) */
+  @media (max-width: 480px) {
+    .readme .ascii { display: none; }
+    .readme h1 { font-size: 28px; }
+    .readme .tagline { font-size: 15px; }
+    .readme .stats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .proj-head .desc { display: none; }
+    .skills-grid { grid-template-columns: 1fr; }
   }
 
   /* Inline link buttons */

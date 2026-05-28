@@ -386,7 +386,7 @@ function ContactCard({ label, cmd, value, static: isStatic }) {
   const inner =
   <div className="ci-block" style={{ marginBottom: 0, paddingLeft: 14 }}>
       <div className="label"># {label}</div>
-      <div className="val" style={{ width: "500px" }}>
+      <div className="val">
         {isStatic ? value : <a href={cmd} target="_blank" rel="noopener noreferrer">{value}<Icon name="ext-link" size={11} /></a>}
       </div>
     </div>;
