@@ -620,19 +620,21 @@ function App() {
 
           {/* Editor body */}
           <div className="editor" key={activeTab}>
-            <div className="editor-overlay-gutter" aria-hidden="true">
-              {Array.from({ length: 240 }, (_, i) => (
-                <span key={i}>{i + 1}</span>
-              ))}
-            </div>
-            {currentFile ? (
-              <div className="fade-in editor-content">{currentFile.render({ open: openFile })}</div>
-            ) : (
-              <div className="editor-content" style={{ padding: "40px", color: "var(--fg-dim)", textAlign: "center" }}>
-                <div style={{ fontSize: 18, marginBottom: 8 }}>No editor open</div>
-                <div>Open a file from the explorer, or press <code>Ctrl+P</code></div>
+            <div className="editor-inner">
+              <div className="editor-overlay-gutter" aria-hidden="true">
+                {Array.from({ length: 240 }, (_, i) => (
+                  <span key={i}>{i + 1}</span>
+                ))}
               </div>
-            )}
+              {currentFile ? (
+                <div className="fade-in editor-content">{currentFile.render({ open: openFile })}</div>
+              ) : (
+                <div className="editor-content" style={{ padding: "40px", color: "var(--fg-dim)", textAlign: "center" }}>
+                  <div style={{ fontSize: 18, marginBottom: 8 }}>No editor open</div>
+                  <div>Open a file from the explorer, or press <code>Ctrl+P</code></div>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Terminal */}
