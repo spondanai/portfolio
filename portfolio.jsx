@@ -106,26 +106,14 @@ function TreeNode({ node, depth = 0, activeFile, onOpen, openSet, toggle }) {
 const COMMANDS = {
   help: {
     desc: "list commands",
-    run: () => [
-      "Available commands:",
-      "  help              Show this help",
-      "  ls                List files",
-      "  cat <file>        Print a file (e.g. cat about.ts)",
-      "  open <file>       Open a file in a new tab",
-      "  whoami            Print developer profile",
-      "  projects          List projects",
-      "  skills            List skill categories",
-      "  contact           Show contact info",
-      "  clear             Clear terminal",
-      "  echo <text>       Print text",
-    ],
+    run: (lang) => [UI[lang].termHelpHeader, ...UI[lang].termHelp],
   },
   ls: { desc: "list files", run: () => FILE_ORDER.map((f) => "  " + f) },
   whoami: {
     desc: "print profile",
-    run: () => [
+    run: (lang) => [
       `name:   ${PROFILE.name}`,
-      `role:   ${PROFILE.role}`,
+      `role:   ${tr(PROFILE.role, lang)}`,
       `exp:    ${PROFILE.tenure.years}y ${PROFILE.tenure.months}m`,
       `stack:  ${PROFILE.stack.join(", ")}`,
       `email:  ${PROFILE.email}`,
@@ -133,29 +121,29 @@ const COMMANDS = {
   },
   projects: {
     desc: "list projects",
-    run: () =>
+    run: (lang) =>
       PROJECTS.flatMap((p, i) => [
         `  ${i + 1}. ${p.name} — ${p.lang}/${p.framework}`,
-        `     ${p.summary}`,
+        `     ${tr(p.summary, lang)}`,
       ]),
   },
   skills: {
     desc: "list skills",
-    run: () => SKILLS.flatMap((c) => [`# ${c.cat}`, ...c.items.map((s) => `  - ${s.name} (${s.yrs})`)]),
+    run: (lang) => SKILLS.flatMap((c) => [`# ${tr(c.cat, lang)}`, ...c.items.map((s) => `  - ${tr(s.name, lang)} (${s.yrs})`)]),
   },
   contact: {
     desc: "show contact",
-    run: () => [
+    run: (lang) => [
       `email:    ${PROFILE.email}`,
       `github:   ${PROFILE.github}`,
-      `location: ${PROFILE.location}`,
+      `location: ${tr(PROFILE.location, lang)}`,
     ],
   },
 };
 
-function Terminal({ visible, onClose, openFile, height, setHeight }) {
+function Terminal({ visible, onClose, openFile, height, setHeight, lang, setLang }) {
   const [history, setHistory] = useState(() => [
-    { type: "out", text: "Welcome to portfolio terminal · type 'help' to begin" },
+    { type: "out", text: UI[lang].termWelcome },
     { type: "out", text: "" },
   ]);
   const [input, setInput] = useState("");
@@ -201,6 +189,15 @@ function Terminal({ visible, onClose, openFile, height, setHeight }) {
 
     let out;
     if (name === "echo") out = [arg];
+    else if (name === "lang") {
+      const target = arg.trim().toLowerCase();
+      if (target === "en" || target === "th") {
+        setLang(target);
+        out = [target === "th" ? "เปลี่ยนภาษาเป็นภาษาไทยแล้ว" : "Language switched to English"];
+      } else {
+        out = [<span className="term-err">lang: {arg || "?"}: use 'lang en' or 'lang th'</span>];
+      }
+    }
     else if (name === "cat") {
       if (FILES[arg]) {
         openFile(arg);
@@ -212,7 +209,7 @@ function Terminal({ visible, onClose, openFile, height, setHeight }) {
       if (FILES[arg]) { openFile(arg); out = [`opened ${arg}`]; }
       else out = [<span className="term-err">open: {arg || "?"}: not a known file</span>];
     } else if (COMMANDS[name]) {
-      out = COMMANDS[name].run();
+      out = COMMANDS[name].run(lang);
     } else {
       out = [<span className="term-err">command not found: {name}. type 'help' for a list.</span>];
     }
@@ -291,25 +288,28 @@ function Terminal({ visible, onClose, openFile, height, setHeight }) {
 }
 
 /* ---------------- Command Palette ---------------- */
-function Palette({ open, onClose, onAction }) {
+function Palette({ open, onClose, onAction, lang }) {
   const [q, setQ] = useState("");
   const [sel, setSel] = useState(0);
   const inputRef = useRef();
+  const t = UI[lang];
 
   const items = useMemo(() => {
     const all = [
-      ...FILE_ORDER.map((f) => ({ kind: "file", label: `Go to file: ${f}`, action: () => onAction({ type: "open", file: f }) })),
-      { kind: "action", label: "View: Toggle Terminal", hint: "Ctrl+`", action: () => onAction({ type: "toggle-term" }) },
-      { kind: "action", label: "View: Toggle Sidebar", hint: "Ctrl+B", action: () => onAction({ type: "toggle-sidebar" }) },
+      ...FILE_ORDER.map((f) => ({ kind: "file", label: t.pGoToFile(f), action: () => onAction({ type: "open", file: f }) })),
+      { kind: "action", label: t.pToggleTerm, hint: "Ctrl+`", action: () => onAction({ type: "toggle-term" }) },
+      { kind: "action", label: t.pToggleSidebar, hint: "Ctrl+B", action: () => onAction({ type: "toggle-sidebar" }) },
+      { kind: "action", label: t.pLangEN, action: () => onAction({ type: "lang", lang: "en" }) },
+      { kind: "action", label: t.pLangTH, action: () => onAction({ type: "lang", lang: "th" }) },
       { kind: "action", label: "Theme: Dark+ (default)", action: () => onAction({ type: "theme", theme: "darkplus" }) },
       { kind: "action", label: "Theme: Monokai", action: () => onAction({ type: "theme", theme: "monokai" }) },
       { kind: "action", label: "Theme: Dracula", action: () => onAction({ type: "theme", theme: "dracula" }) },
       { kind: "action", label: "Theme: Solarized Light", action: () => onAction({ type: "theme", theme: "solarized" }) },
-      ...PROJECTS.map((p) => ({ kind: "project", label: `Project: ${p.name}`, action: () => onAction({ type: "open", file: "projects.json" }) })),
+      ...PROJECTS.map((p) => ({ kind: "project", label: t.pProject(p.name), action: () => onAction({ type: "open", file: "projects.json" }) })),
     ];
     if (!q) return all;
     return all.filter((i) => i.label.toLowerCase().includes(q.toLowerCase()));
-  }, [q, onAction]);
+  }, [q, onAction, t]);
 
   useEffect(() => {
     if (open) {
@@ -328,7 +328,7 @@ function Palette({ open, onClose, onAction }) {
       <div className="palette" onClick={(e) => e.stopPropagation()}>
         <input
           ref={inputRef}
-          placeholder="Type a command or file name…"
+          placeholder={t.palettePlaceholder}
           value={q}
           onChange={(e) => setQ(e.target.value)}
           onKeyDown={(e) => {
@@ -339,7 +339,7 @@ function Palette({ open, onClose, onAction }) {
           }}
         />
         <div className="list">
-          {items.length === 0 && <div className="item" style={{ color: "var(--fg-dim)" }}>No results</div>}
+          {items.length === 0 && <div className="item" style={{ color: "var(--fg-dim)" }}>{t.paletteNoResults}</div>}
           {items.map((it, i) => (
             <div key={i} className={"item " + (i === sel ? "sel" : "")} onClick={() => { it.action(); onClose(); }}>
               <span>{it.label}</span>
@@ -366,6 +366,17 @@ function App() {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [theme, setTheme] = useState("darkplus");
   const [isMobile, setIsMobile] = useState(_isMob);
+  const [lang, setLangState] = useState(() => {
+    try {
+      const saved = localStorage.getItem("portfolio-lang");
+      if (saved === "en" || saved === "th") return saved;
+    } catch (e) {}
+    return (typeof navigator !== "undefined" && /^th\b/i.test(navigator.language || "")) ? "th" : "en";
+  });
+  const setLang = useCallback((v) => {
+    setLangState(v);
+    try { localStorage.setItem("portfolio-lang", v); } catch (e) {}
+  }, []);
   const [tweaks, setTweaks] = useTweaks(/*EDITMODE-BEGIN*/{
     "accent": "#007acc",
     "theme": "darkplus",
@@ -395,6 +406,11 @@ function App() {
   useEffect(() => {
     setTermVisible(tweaks.showTerminal);
   }, [tweaks.showTerminal]);
+
+  /* Reflect active language on <html> for a11y / correct text rendering */
+  useEffect(() => {
+    document.documentElement.setAttribute("lang", lang);
+  }, [lang]);
 
   /* Reactive mobile breakpoint */
   useEffect(() => {
@@ -460,11 +476,14 @@ function App() {
     else if (a.type === "toggle-term") { setTermVisible((v) => !v); setTweaks("showTerminal", !termVisible); }
     else if (a.type === "toggle-sidebar") setSidebarOpen((v) => !v);
     else if (a.type === "theme") setTweaks("theme", a.theme);
+    else if (a.type === "lang") setLang(a.lang);
   }
 
   const currentFile = activeTab ? FILES[activeTab] : null;
+  const ui = UI[lang];
 
   return (
+    <LangContext.Provider value={lang}>
     <div className="ide">
       {/* Title bar ----------------------------------------------------- */}
       <div className="titlebar">
@@ -614,7 +633,7 @@ function App() {
                 </span>
               </>
             ) : (
-              <span style={{ color: "var(--fg-faint)" }}>no file open · press Ctrl+P to find a file</span>
+              <span style={{ color: "var(--fg-faint)" }}>{ui.noFileOpen}</span>
             )}
           </div>
 
@@ -630,8 +649,8 @@ function App() {
                 <div className="fade-in editor-content">{currentFile.render({ open: openFile })}</div>
               ) : (
                 <div className="editor-content" style={{ padding: "40px", color: "var(--fg-dim)", textAlign: "center" }}>
-                  <div style={{ fontSize: 18, marginBottom: 8 }}>No editor open</div>
-                  <div>Open a file from the explorer, or press <code>Ctrl+P</code></div>
+                  <div style={{ fontSize: 18, marginBottom: 8 }}>{ui.noEditor}</div>
+                  <div>{ui.openHint}</div>
                 </div>
               )}
             </div>
@@ -644,6 +663,8 @@ function App() {
             openFile={openFile}
             height={termHeight}
             setHeight={setTermHeight}
+            lang={lang}
+            setLang={setLang}
           />
         </div>
       </div>
@@ -653,6 +674,14 @@ function App() {
         <span className="item"><Icon name="branch" size={12} />main*</span>
         <span className="item hide-sm"><Icon name="check" size={12} />0 0 <Icon name="error" size={12} /></span>
         <span className="grow" />
+        <span
+          className="item"
+          style={{ cursor: "pointer", fontWeight: 600 }}
+          title="Switch language / สลับภาษา"
+          onClick={() => setLang(lang === "th" ? "en" : "th")}
+        >
+          🌐 {lang === "th" ? "ไทย" : "EN"}
+        </span>
         <span className="item hide-sm">Ln 1, Col 1</span>
         <span className="item hide-sm">UTF-8</span>
         <span className="item hide-sm">LF</span>
@@ -664,37 +693,45 @@ function App() {
       </div>
 
       {/* Command Palette */}
-      <Palette open={paletteOpen} onClose={() => setPaletteOpen(false)} onAction={paletteAction} />
+      <Palette open={paletteOpen} onClose={() => setPaletteOpen(false)} onAction={paletteAction} lang={lang} />
 
       {/* Tweaks Panel */}
       <TweaksPanel>
-        <TweakSection label="Theme">
+        <TweakSection label={ui.twLanguage}>
           <TweakSelect
-            label="Color scheme"
+            label={ui.twLanguage}
+            value={lang}
+            onChange={(v) => setLang(v)}
+            options={[{ value: "en", label: "English" }, { value: "th", label: "ภาษาไทย" }]}
+          />
+        </TweakSection>
+        <TweakSection label={ui.twTheme}>
+          <TweakSelect
+            label={ui.twColorScheme}
             value={tweaks.theme}
             onChange={(v) => setTweaks("theme", v)}
             options={["darkplus", "monokai", "dracula", "solarized"]}
           />
           <TweakColor
-            label="Accent"
+            label={ui.twAccent}
             value={tweaks.accent}
             onChange={(v) => setTweaks("accent", v)}
             options={["#007acc", "#a6e22e", "#bd93f9", "#f14c4c", "#dcb67a", "#4ec9b0"]}
           />
         </TweakSection>
-        <TweakSection label="Layout">
+        <TweakSection label={ui.twLayout}>
           <TweakToggle
-            label="Show terminal"
+            label={ui.twShowTerminal}
             value={tweaks.showTerminal}
             onChange={(v) => setTweaks("showTerminal", v)}
           />
           <TweakToggle
-            label="Compact sidebar"
+            label={ui.twCompactSidebar}
             value={tweaks.compactSidebar}
             onChange={(v) => setTweaks("compactSidebar", v)}
           />
           <TweakSlider
-            label="Font size"
+            label={ui.twFontSize}
             value={tweaks.fontSize}
             min={11}
             max={16}
@@ -705,6 +742,7 @@ function App() {
         </TweakSection>
       </TweaksPanel>
     </div>
+    </LangContext.Provider>
   );
 }
 
