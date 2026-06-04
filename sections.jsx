@@ -84,7 +84,7 @@ function ReadmeSection({ onOpen }) {
       <p className="fade-in d5">
         Hi, I'm <strong style={{ color: "var(--fg-bright)" }}>Spondanai</strong> — a Software Engineer at{" "}
         <strong style={{ color: "var(--accent-2)" }}>Internet Thailand PCL (INET)</strong>, based in Chiangmai.
-        I've been here for <span className="link" onClick={() => onOpen("about.ts")}>2 years 8 months</span>,
+        I've been here for <span className="link" onClick={() => onOpen("about.ts")}>2 years 9 months</span>,
         building backend systems in <strong style={{ color: "var(--ty)" }}>Go</strong> and{" "}
         <strong style={{ color: "#3178C6" }}>TypeScript</strong>.
       </p>
@@ -159,7 +159,7 @@ function AboutSection() {
   [<>  <span className="pr">name</span>: <span className="st">"{PROFILE.name}"</span>,</>],
   [<>  <span className="pr">role</span>: <span className="st">"{PROFILE.role}"</span>,</>],
   [<>  <span className="pr">company</span>: <span className="st">"{PROFILE.company}"</span>,</>],
-  [<>  <span className="pr">years</span>: <span className="nm">2.67</span>, <span className="cm">// 2 years, 8 months at INET</span></>],
+  [<>  <span className="pr">years</span>: <span className="nm">2.75</span>, <span className="cm">// 2 years, 9 months at INET</span></>],
   [<>  <span className="pr">stack</span>: [{PROFILE.stack.map((s, i) => <React.Fragment key={s}><span className="st">"{s}"</span>{i < PROFILE.stack.length - 1 ? ", " : ""}</React.Fragment>)}],</>],
   [<>  <span className="pr">values</span>: [</>],
   [<>    <span className="st">"write code that other people can read"</span>,</>],
@@ -195,7 +195,7 @@ function ProjectsSection() {
   return (
     <div className="json-doc" style={{ fontFamily: "var(--font-mono)" }}>
       <div style={{ padding: "0 24px 8px 0", color: "var(--syntax-comment)" }}>
-        // projects.json · {PROJECTS.length} entries · sorted by recency
+        // projects.json · {PROJECTS.length} entries · oldest → newest
       </div>
       <div style={{ padding: "0 8px 0 0", color: "var(--syntax-punct)" }}>[</div>
       {PROJECTS.map((p, idx) => {
@@ -330,13 +330,6 @@ function SkillsSection() {
             </div>
           </div>
         )}
-      </div>
-
-      <div style={{ color: "var(--syntax-comment)" }}>
-        # also comfortable with: REST API design, JWT/OAuth, hexagonal arch,
-      </div>
-      <div style={{ color: "var(--syntax-comment)" }}>
-        # port/adapter patterns, 3rd-party integration (LINE, AWS S3, OnePlatform)
       </div>
     </div>);
 

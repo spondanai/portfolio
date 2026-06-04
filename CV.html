@@ -216,14 +216,17 @@
   }
   .tl-scale {
     grid-column: 2 / 3;
-    display: flex;
-    justify-content: space-between;
+    position: relative;
+    height: 12px;
     color: var(--fg-faint);
     font-size: 9.5px;
-    padding: 0 2px 2px;
+    padding: 0 0 2px;
     border-bottom: 1px dashed var(--border-strong);
     margin-bottom: 4px;
   }
+  /* Year ticks positioned on the same Jan'23→mid'26 scale as the bars below. */
+  .tl-scale span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+  .tl-scale span:first-child { left: 0; transform: none; }
   .tl-label {
     color: var(--fg);
     white-space: nowrap;
@@ -576,7 +579,7 @@
         </div>
         <h1 class="name"><span class="at">$</span> <span class="lang-en">Spondanai Rukwong</span><span class="lang-th">สพลดนัย รักวงค์</span></h1>
         <div class="role-line">
-          <span class="k">role</span>: <span class="v">"Backend Developer"</span>
+          <span class="k">role</span>: <span class="v">"Software Engineer"</span>
           <span class="pf"><span class="arrow">↗</span><a href="index.html">spondanai.dev</a></span>
         </div>
       </div>
@@ -590,12 +593,12 @@
     <!-- Summary -->
     <h2 class="section"><span class="lang-en">summary</span><span class="lang-th">สรุป</span></h2>
     <p class="summary">
-      <span class="lang-en">Software Engineer specializing in backend systems with <span class="hl">2 years 8 months</span> at
+      <span class="lang-en">Software Engineer specializing in backend systems with <span class="hl">2 years 9 months</span> at
       <span class="hl">Internet Thailand PCL (INET)</span> — <span class="hl">bootstrapped all three services</span> of
       Thailand's national EMS platform (NIEMS) from scratch, now serving all health zones and provinces
       nationwide. Also delivers enterprise document services on the Softway ONLYOFFICE platform. Specializes in
       cross-service integration, multi-role government workflows, and <span class="hl">Hexagonal Architecture</span>.</span>
-      <span class="lang-th">Software Engineer เชี่ยวชาญด้าน backend ประสบการณ์ <span class="hl">2 ปี 8 เดือน</span> ที่
+      <span class="lang-th">Software Engineer เชี่ยวชาญด้าน backend ประสบการณ์ <span class="hl">2 ปี 9 เดือน</span> ที่
       <span class="hl">บริษัท อินเทอร์เน็ตประเทศไทย จำกัด (มหาชน)</span> — <span class="hl">สร้างทั้ง 3 บริการ</span>ของ
       ระบบ EMS แห่งชาติ (NIEMS) ตั้งแต่ต้น ปัจจุบันให้บริการครอบคลุมทุกเขตสุขภาพและทุกจังหวัดทั่วประเทศ
       นอกจากนี้ยังพัฒนาระบบจัดการเอกสาร ONLYOFFICE บน Softway platform
@@ -614,7 +617,7 @@
       </div>
       <div class="work-title">
         <span class="k">title</span>: <span class="v">"Software Engineer"</span>
-        <span class="work-duration"><span class="lang-en">· 2 yrs 8 mos</span><span class="lang-th">· 2 ปี 8 เดือน</span></span>
+        <span class="work-duration"><span class="lang-en">· 2 yrs 9 mos</span><span class="lang-th">· 2 ปี 9 เดือน</span></span>
       </div>
       <div class="work-scope">
         <span class="lang-en">Backend development across two product lines: <strong>NIEMS national EMS platform</strong> (3 Go services, bootstrapped from scratch) and <strong>Softway ONLYOFFICE</strong> (TypeScript/NestJS document collaboration platform).</span>
@@ -641,33 +644,33 @@
       <div class="timeline-grid">
         <div></div>
         <div class="tl-scale">
-          <span>2023</span><span>2024</span><span>2025</span><span>2026</span>
+          <span style="left: 0%">2023</span><span style="left: 28.57%">2024</span><span style="left: 57.14%">2025</span><span style="left: 85.71%">2026</span>
         </div>
         <div></div>
 
         <div class="tl-label">I-DEMS Core <span class="tag">NIEMS</span></div>
-        <div class="tl-track"><div class="tl-bar" style="left: 0%; width: 70%"></div></div>
+        <div class="tl-track"><div class="tl-bar" style="left: 23.81%; width: 50%"></div></div>
         <div class="tl-dates">Nov '23 – Aug '25</div>
 
         <div class="tl-label">Radio Certification <span class="tag">NIEMS</span></div>
-        <div class="tl-track"><div class="tl-bar" style="left: 40%; width: 20%"></div></div>
+        <div class="tl-track"><div class="tl-bar" style="left: 52.38%; width: 14.29%"></div></div>
         <div class="tl-dates">Nov '24 – May '25</div>
 
         <div class="tl-label">TREMT System <span class="tag">NIEMS</span></div>
-        <div class="tl-track"><div class="tl-bar" style="left: 46.67%; width: 50%"></div></div>
+        <div class="tl-track"><div class="tl-bar" style="left: 57.14%; width: 35.71%"></div></div>
         <div class="tl-dates">Jan '25 – Apr '26</div>
 
+        <div class="tl-label">Discord Clipper Bot <span class="tag"><span class="lang-en">Personal</span><span class="lang-th">ส่วนตัว</span></span></div>
+        <div class="tl-track"><div class="tl-bar personal ongoing" style="left: 85.71%; width: 11.9%"></div></div>
+        <div class="tl-dates ongoing" style="color: var(--term-green)"><span class="lang-en">Jan '26 – Present</span><span class="lang-th">ม.ค. '26 – ปัจจุบัน</span></div>
+
         <div class="tl-label">ONLYOFFICE Core <span class="tag">Softway</span></div>
-        <div class="tl-track"><div class="tl-bar softway ongoing" style="left: 96.67%; width: 3.33%"></div></div>
+        <div class="tl-track"><div class="tl-bar softway ongoing" style="left: 92.86%; width: 4.76%"></div></div>
         <div class="tl-dates ongoing" style="color: var(--term-green)"><span class="lang-en">Apr '26 – Present</span><span class="lang-th">เม.ย. '26 – ปัจจุบัน</span></div>
 
         <div class="tl-label">Authentication Service <span class="tag">Softway</span></div>
-        <div class="tl-track"><div class="tl-bar softway ongoing" style="left: 96.67%; width: 3.33%"></div></div>
+        <div class="tl-track"><div class="tl-bar softway ongoing" style="left: 92.86%; width: 4.76%"></div></div>
         <div class="tl-dates ongoing" style="color: var(--term-green)"><span class="lang-en">Apr '26 – Present</span><span class="lang-th">เม.ย. '26 – ปัจจุบัน</span></div>
-
-        <div class="tl-label">Discord Clipper Bot <span class="tag"><span class="lang-en">Personal</span><span class="lang-th">ส่วนตัว</span></span></div>
-        <div class="tl-track"><div class="tl-bar personal ongoing" style="left: 86.67%; width: 13.33%"></div></div>
-        <div class="tl-dates ongoing" style="color: var(--term-green)"><span class="lang-en">Jan '26 – Present</span><span class="lang-th">ม.ค. '26 – ปัจจุบัน</span></div>
       </div>
       <div class="tl-legend">
         <span><span class="sw" style="background: var(--accent-2)"></span>NIEMS</span>
@@ -682,6 +685,18 @@
 
     <div class="eco-group">
       <div class="eco-label"><span class="lang-en">NIEMS EMS Platform <span class="cnt">// National Government · Thailand-wide · 3 services, all bootstrapped from scratch</span></span><span class="lang-th">ระบบ EMS ของ NIEMS <span class="cnt">// หน่วยงานรัฐ · ทั่วประเทศไทย · 3 บริการ สร้างตั้งแต่ต้นทั้งหมด</span></span></div>
+
+      <div class="proj-row">
+        <div class="proj-head">
+          <span class="proj-name"><span class="lang-en">I-DEMS Core Service</span><span class="lang-th">I-DEMS Core Service</span></span>
+          <span class="proj-dates">Nov '23 – Aug '25</span>
+          <span class="proj-stack">Go <span class="dot">·</span> Fiber <span class="dot">·</span> PostgreSQL <span class="dot">·</span> JWT</span>
+        </div>
+        <div class="proj-blurb">
+          <span class="lang-en"><b>Foundation identity layer</b> for the national EMS platform — single source of truth for all operation units, affiliations, and health-zone mappings across Thailand. Consumed by Radio Certification at login via bidirectional internal APIs.</span>
+          <span class="lang-th"><b>Layer ระบุตัวตนพื้นฐาน</b> ของแพลตฟอร์ม EMS ระดับชาติ — แหล่งข้อมูลกลางของหน่วยปฏิบัติการ การสังกัด และการ mapping เขตสุขภาพทั่วประเทศ ถูกเรียกใช้โดย Radio Certification ตอน login ผ่าน internal API แบบ bidirectional</span>
+        </div>
+      </div>
 
       <div class="proj-row">
         <div class="proj-head">
@@ -704,18 +719,6 @@
         <div class="proj-blurb">
           <span class="lang-en"><b>National EMS training platform</b> under NIEMS — manages certification lifecycle for emergency medical personnel across government and private operation units nationwide. Course enrollment, e-signed PDF certificates, and automated reporting.</span>
           <span class="lang-th"><b>แพลตฟอร์มฝึกอบรม EMS ระดับชาติ</b> ภายใต้ NIEMS — บริหารจัดการวงจรการรับรองบุคลากรการแพทย์ฉุกเฉินทั้งหน่วยงานรัฐและเอกชนทั่วประเทศ ลงทะเบียนหลักสูตร ออกใบประกาศนียบัตร PDF พร้อมลายเซ็นอิเล็กทรอนิกส์ และระบบรายงานอัตโนมัติ</span>
-        </div>
-      </div>
-
-      <div class="proj-row">
-        <div class="proj-head">
-          <span class="proj-name"><span class="lang-en">I-DEMS Core Service</span><span class="lang-th">I-DEMS Core Service</span></span>
-          <span class="proj-dates">Nov '23 – Aug '25</span>
-          <span class="proj-stack">Go <span class="dot">·</span> Fiber <span class="dot">·</span> PostgreSQL <span class="dot">·</span> JWT</span>
-        </div>
-        <div class="proj-blurb">
-          <span class="lang-en"><b>Foundation identity layer</b> for the national EMS platform — single source of truth for all operation units, affiliations, and health-zone mappings across Thailand. Consumed by Radio Certification at login via bidirectional internal APIs.</span>
-          <span class="lang-th"><b>Layer ระบุตัวตนพื้นฐาน</b> ของแพลตฟอร์ม EMS ระดับชาติ — แหล่งข้อมูลกลางของหน่วยปฏิบัติการ การสังกัด และการ mapping เขตสุขภาพทั่วประเทศ ถูกเรียกใช้โดย Radio Certification ตอน login ผ่าน internal API แบบ bidirectional</span>
         </div>
       </div>
     </div>
@@ -776,8 +779,8 @@
     <!-- Education -->
     <h2 class="section"><span class="lang-en">education</span><span class="lang-th">การศึกษา</span></h2>
     <div class="edu">
-      <span class="lang-en"><span class="deg">B.Eng.</span> Computer Engineering <span class="meta">· University of Phayao</span></span>
-      <span class="lang-th"><span class="deg">วศ.บ.</span> วิศวกรรมคอมพิวเตอร์ <span class="meta">· มหาวิทยาลัยพะเยา</span></span>
+      <span class="lang-en"><span class="deg">B.Eng.</span> Computer Engineering <span class="meta">· University of Phayao · Graduated 2023</span></span>
+      <span class="lang-th"><span class="deg">วศ.บ.</span> วิศวกรรมคอมพิวเตอร์ <span class="meta">· มหาวิทยาลัยพะเยา · จบปี 2566</span></span>
     </div>
 
     <!-- Footer -->
