@@ -188,6 +188,92 @@ const PROJECTS = [
     status: "production",
   },
   {
+    id: "discore-frontend",
+    name: "Discore Bot Dashboard",
+    lang: "TypeScript",
+    framework: "Vue 3 + Vite",
+    accent: "#41b883",
+    dates: "Feb 2026 – Present",
+    ongoing: true,
+    summary: L(
+      "Full-featured Vue 3 admin dashboard for the Discord Clipper Bot Platform — manages campaigns, clippers, withdrawals, guild configuration, and ticket workflows. Companion frontend to the Go backend, sharing the same domain and Discord OAuth2 auth layer.",
+      "แดชบอร์ด admin แบบ Vue 3 สำหรับแพลตฟอร์ม Discord Clipper Bot — จัดการแคมเปญ, clipper, การถอนเงิน, การตั้งค่า guild, และ ticket workflow เป็น frontend คู่กับ Go backend โดยใช้ Discord OAuth2 ร่วมกัน",
+    ),
+    role: L(
+      "Solo Developer · Full-stack Frontend",
+      "Solo Developer · Full-stack Frontend",
+    ),
+    features: [
+      L(
+        "Campaign + submission management views with live status badges, pagination, and inline approve/reject actions",
+        "วิว campaign และ submission พร้อม status badge แบบ real-time, pagination, และ approve/reject inline",
+      ),
+      L(
+        "Clipper profile pages, leaderboard, and financial dashboard (balance, pending withdrawals, payout history)",
+        "หน้า clipper profile, leaderboard, และ financial dashboard (ยอดคงเหลือ, รายการถอนเงินรอดำเนินการ, ประวัติจ่ายเงิน)",
+      ),
+      L(
+        "Dark / light theme toggle persisted in localStorage; applied before Vue mounts to prevent FOUC",
+        "สลับธีม dark/light บันทึกใน localStorage และ apply ก่อน Vue mount เพื่อป้องกัน FOUC",
+      ),
+      L(
+        "Discord OAuth2 login with router guard; single shared request() helper with automatic 401 redirect",
+        "ล็อกอินด้วย Discord OAuth2 พร้อม router guard; ใช้ request() helper เดียวที่จัดการ 401 redirect โดยอัตโนมัติ",
+      ),
+      L(
+        "Playwright E2E (mocked routes) + integration tests against live Fly.io backend; Vitest unit coverage for utils and composables",
+        "ทดสอบด้วย Playwright E2E (mock routes) และ integration test กับ backend จริงบน Fly.io; Vitest unit test ครอบคลุม utils และ composables",
+      ),
+      L(
+        "Production-served by nginx on Fly.io Singapore; Sentry error tracking for the Vue runtime",
+        "deploy บน Fly.io (สิงคโปร์) ผ่าน nginx; Sentry สำหรับ error tracking บน Vue runtime",
+      ),
+    ],
+    tech: ["TypeScript", "Vue 3", "Vite", "Tailwind CSS", "Pinia", "Vue Router", "Playwright", "Vitest", "Docker", "Fly.io", "Sentry", "Discord OAuth2"],
+    status: "production",
+  },
+  {
+    id: "clip-hunter-landing",
+    name: "ClipHunter Landing & Portal",
+    lang: "TypeScript",
+    framework: "Next.js",
+    accent: "#f97316",
+    dates: "Mar 2026 – Present",
+    ongoing: true,
+    summary: L(
+      "Next.js marketing site and authenticated portal for the ClipHunter platform (clip-hunter.online) — full landing page with Hero, social proof, How-It-Works, tiered Pricing, FAQ, and a Discord OAuth2 login portal for clippers. Deployed to Cloudflare Workers via next-on-pages.",
+      "เว็บ marketing และ portal สำหรับแพลตฟอร์ม ClipHunter (clip-hunter.online) — ประกอบด้วยหน้า landing ครบครัน (Hero, social proof, How-It-Works, Pricing, FAQ) และ portal สำหรับ login ด้วย Discord OAuth2; deploy บน Cloudflare Workers ผ่าน next-on-pages",
+    ),
+    role: L(
+      "Solo Developer · Frontend · Platform marketing",
+      "Solo Developer · Frontend · Marketing แพลตฟอร์ม",
+    ),
+    features: [
+      L(
+        "Full landing page with 8 sections (Hero → Trust → ProblemSolution → HowItWorks → Pricing → Inquiry → FAQ → FinalCTA) targeting brand managers",
+        "หน้า landing page ครบ 8 section (Hero → Trust → ProblemSolution → HowItWorks → Pricing → Inquiry → FAQ → FinalCTA) สำหรับดึงดูด brand manager",
+      ),
+      L(
+        "Discord OAuth2 login flow integrated with the Go backend; authenticated portal routes for clippers to track submissions and earnings",
+        "ระบบ login ด้วย Discord OAuth2 เชื่อมต่อกับ Go backend; เส้นทาง portal สำหรับ clipper ติดตาม submission และรายได้",
+      ),
+      L(
+        "i18n-ready translation layer (src/translations) with middleware routing for localized pages",
+        "รองรับ i18n ด้วยระบบ translation (src/translations) และ middleware routing สำหรับหน้าภาษาต่างๆ",
+      ),
+      L(
+        "Legal pages (Terms, Privacy, Cookies), brand inquiry form, and shareable public campaign report links requiring no auth",
+        "หน้า legal (Terms, Privacy, Cookies), ฟอร์ม inquiry สำหรับ brand, และลิงก์รายงานแคมเปญสาธารณะที่ไม่ต้อง auth",
+      ),
+      L(
+        "Deployed to Cloudflare Workers via next-on-pages (wrangler); Sentry instrumentation for edge runtime; GitHub Actions CI/CD",
+        "deploy บน Cloudflare Workers ผ่าน next-on-pages (wrangler); Sentry สำหรับ edge runtime; GitHub Actions CI/CD",
+      ),
+    ],
+    tech: ["TypeScript", "Next.js", "Tailwind CSS", "Cloudflare Workers", "Discord OAuth2", "Sentry", "i18n", "GitHub Actions"],
+    status: "production",
+  },
+  {
     id: "onlyoffice",
     name: "ONLYOFFICE Core Service",
     lang: "TypeScript",
