@@ -379,7 +379,9 @@ const SKILLS = [
     cat: L("Frameworks", "เฟรมเวิร์ก"),
     items: [
       { name: "NestJS", level: 0.8, yrs: "1y+" },
-      { name: "Fiber", level: 0.85, yrs: "2y" },
+      { name: "Fiber", level: 0.85, yrs: "2y+" },
+      { name: "Vue 3", level: 0.7, yrs: "1y" },
+      { name: "Next.js", level: 0.65, yrs: "1y" },
       { name: "TypeORM", level: 0.7, yrs: "1y" },
     ],
   },
@@ -397,6 +399,8 @@ const SKILLS = [
       { name: "Docker", level: 0.8, yrs: "2y" },
       { name: "Git", level: 0.85, yrs: "2y+" },
       { name: "Swagger / OpenAPI", level: 0.8, yrs: "2y" },
+      { name: "GitHub Actions", level: 0.7, yrs: "1y" },
+      { name: "Tailwind CSS", level: 0.7, yrs: "1y" },
     ],
   },
   {
@@ -405,6 +409,7 @@ const SKILLS = [
       { name: L("REST API design", "การออกแบบ REST API"), level: 0.85, yrs: "—" },
       { name: "JWT / OAuth", level: 0.8, yrs: "—" },
       { name: "Hexagonal Arch.", level: 0.75, yrs: "—" },
+      { name: "Clean Architecture", level: 0.75, yrs: "—" },
       { name: "Port/Adapter", level: 0.75, yrs: "—" },
       { name: L("3rd-Party Integration", "การเชื่อมต่อ 3rd-Party"), level: 0.8, yrs: "—" },
     ],
