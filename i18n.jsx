@@ -77,6 +77,7 @@ const UI = {
     fFeatures: "features",
     fTech: "tech",
     fStatus: "status",
+    fShowcase: "showcase",
 
     /* terminal */
     termWelcome: "Welcome to portfolio terminal · type 'help' to begin",
@@ -187,6 +188,7 @@ const UI = {
     fFeatures: "ฟีเจอร์หลัก",
     fTech: "เทคโนโลยี",
     fStatus: "สถานะ",
+    fShowcase: "ตัวอย่างการใช้งาน",
 
     /* terminal */
     termWelcome: "ยินดีต้อนรับสู่ portfolio terminal · พิมพ์ 'help' เพื่อเริ่มต้น",

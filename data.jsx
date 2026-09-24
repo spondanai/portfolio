@@ -321,6 +321,15 @@ const PROJECTS = [
     ],
     tech: ["TypeScript", "NestJS", "PostgreSQL", "TypeORM", "AWS S3", "Swagger", "Docker", "JWT", "JWKS", "ONLYOFFICE", "OneBox", "OnePlatform"],
     status: "production",
+    showcase: {
+      src: "assets/onlyoffice-showcase.mp4",
+      poster: "assets/onlyoffice-showcase.jpg",
+      aspect: "8 / 3",
+      caption: L(
+        "Recorded against a local Core instance and ONLYOFFICE Document Server with demo accounts. A minimal host page stands in for the OneOffice frontend. Two users co-edit a .docx live, and Save sends a force-save that Core receives through the callback and writes to storage. The same flow is shown for .xlsx.",
+        "อัดจาก Core กับ ONLYOFFICE Document Server ที่รันบนเครื่องด้วยบัญชีทดสอบ ใช้หน้า host แบบย่อแทน frontend ของ OneOffice: ผู้ใช้ 2 คนแก้ .docx พร้อมกันแบบเรียลไทม์ และปุ่ม Save จะสั่ง force-save ให้ Core รับไฟล์ผ่าน callback แล้วบันทึกลง storage พร้อมตัวอย่างเดียวกันกับ .xlsx",
+      ),
+    },
   },
   {
     id: "auth",
@@ -403,6 +412,15 @@ const PROJECTS = [
     ],
     tech: ["Go", "chi", "pgx", "PostgreSQL", "Next.js", "React", "TypeScript", "WebSocket", "ffmpeg", "Kubernetes", "Docker", "OneID"],
     status: "production",
+    showcase: {
+      src: "assets/hycanvas-showcase.mp4",
+      poster: "assets/hycanvas-showcase.jpg",
+      aspect: "16 / 10",
+      caption: L(
+        "Recorded on a local instance with demo accounts: the owner shares a design with Can edit access, and a collaborator outside the workspace favorites it, edits it, and exports a server-rendered MP4.",
+        "อัดจาก instance บนเครื่องด้วยบัญชีทดสอบ: เจ้าของแชร์งานพร้อมสิทธิ์ Can edit แล้วผู้ร่วมงานที่ไม่ได้อยู่ใน workspace กด favorite, แก้ไข และ export เป็น MP4 ที่ render ฝั่ง server",
+      ),
+    },
   },
 ];
 

@@ -283,6 +283,26 @@ function ProjectsSection() {
                   <span className="json-string">"{summary}"</span>
                   <span className="json-punct">,</span>
                 </div>
+                {p.showcase && (
+                  <div className="proj-section">
+                    <h4>"{t.fShowcase}": {"{"}</h4>
+                    <div style={{ paddingLeft: 18 }}>
+                      <video
+                        className="proj-video"
+                        src={p.showcase.src}
+                        poster={p.showcase.poster}
+                        controls
+                        muted
+                        loop
+                        playsInline
+                        preload="none"
+                        style={{ aspectRatio: p.showcase.aspect }}
+                      />
+                      <div style={{ color: "var(--syntax-comment)", fontSize: 12, marginTop: 6 }}>// {tr(p.showcase.caption, lang)}</div>
+                    </div>
+                    <div style={{ color: "var(--syntax-punct)", paddingLeft: 4 }}>{"}"},</div>
+                  </div>
+                )}
                 <div className="proj-section">
                   <h4>"{t.fFeatures}": [</h4>
                   <ul>
