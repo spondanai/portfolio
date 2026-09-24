@@ -363,6 +363,47 @@ const PROJECTS = [
     tech: ["Go", "Fiber", "PostgreSQL", "Redis", "RS256 JWT", "Docker"],
     status: "production",
   },
+  {
+    id: "hycanvas",
+    name: "HyCanvas Design Platform",
+    lang: "Go",
+    framework: "chi + Next.js",
+    accent: "#8b5cf6",
+    dates: "Aug 2026 – Present",
+    ongoing: true,
+    summary: L(
+      "Self-hostable, AI-native design platform (a Canva alternative) shipped as a service of the ONLYOFFICE platform — same users, same OneID login. Go backend (REST, realtime WebSocket, server-side rendering engine for PNG/PDF/MP4 export) with a statically exported Next.js editor and 29 framework-agnostic @hc/* packages in an npm-workspaces monorepo. Runs on Kubernetes (3 replicas) under the /hycanvas sub-path.",
+      "แพลตฟอร์มออกแบบแบบ self-host ที่มี AI ในตัว (ทางเลือกแทน Canva) ให้บริการเป็นส่วนหนึ่งของแพลตฟอร์ม ONLYOFFICE — ใช้ผู้ใช้และ OneID login ชุดเดียวกัน ประกอบด้วย Go backend (REST, realtime WebSocket, rendering engine ฝั่ง server สำหรับ export PNG/PDF/MP4) กับ editor แบบ Next.js static export และ package @hc/* 29 ตัวใน monorepo แบบ npm workspaces รันบน Kubernetes (3 replicas) ภายใต้ sub-path /hycanvas",
+    ),
+    role: L(
+      "Full-stack Developer · Sharing & collaboration · Export reliability",
+      "Full-stack Developer · ระบบแชร์และทำงานร่วมกัน · ความเสถียรของการ export",
+    ),
+    features: [
+      L(
+        "Made video/document export jobs survive a 3-pod deployment: Postgres-queued workers with heartbeat leases, reclaim of jobs from dead pods, graceful SIGTERM requeue, and a shared jobs table replacing the per-process in-memory registry",
+        "ทำให้งาน export วิดีโอ/เอกสารทำงานได้ถูกต้องบน 3 pod: worker ที่ดึงคิวจาก Postgres พร้อม heartbeat lease, ดึงงานคืนจาก pod ที่ตาย, requeue อย่างนุ่มนวลเมื่อได้ SIGTERM และย้าย job registry จาก in-memory ไปเป็น jobs table ที่ใช้ร่วมกัน",
+      ),
+      L(
+        "Fixed images missing from MP4/PDF exports: resolve file-local asset ids through the design manifest, add GIF/BMP/TIFF/WebP decoders, and rasterize AVIF/HEIC via ffmpeg and SVG via oksvg",
+        "แก้ปัญหารูปหายใน export MP4/PDF: resolve asset id ภายในไฟล์ผ่าน manifest ของงานออกแบบ, เพิ่ม decoder GIF/BMP/TIFF/WebP และแปลง AVIF/HEIC ด้วย ffmpeg และ SVG ด้วย oksvg",
+      ),
+      L(
+        "Grant-aware sharing: edit-grant collaborators can save, export, favorite, delete their own uploads, and leave a shared design — without needing workspace membership",
+        "ระบบแชร์ที่อิงสิทธิ์ราย design: ผู้ร่วมแก้ไขที่ได้สิทธิ์ edit สามารถบันทึก, export, กด favorite, ลบไฟล์ที่ตัวเองอัปโหลด และออกจากงานที่ถูกแชร์ได้ โดยไม่ต้องเป็นสมาชิก workspace",
+      ),
+      L(
+        "Base-path-aware share links for the /hycanvas nginx sub-path deploy, and OneID profile sync onto users on every login",
+        "ลิงก์แชร์ที่รองรับ base path สำหรับการ deploy ใต้ sub-path /hycanvas ผ่าน nginx และซิงค์ข้อมูลโปรไฟล์ OneID ลง users ทุกครั้งที่ login",
+      ),
+      L(
+        "Live-audience polls keyed to the signed-in account (one vote per person), and kept canvas drags at frame rate on large documents",
+        "โพลสำหรับผู้ชมแบบ live ที่ผูกกับบัญชีที่ login (หนึ่งคนหนึ่งโหวต) และทำให้การลากบน canvas ยังลื่นเต็มเฟรมเรตในเอกสารขนาดใหญ่",
+      ),
+    ],
+    tech: ["Go", "chi", "pgx", "PostgreSQL", "Next.js", "React", "TypeScript", "WebSocket", "ffmpeg", "Kubernetes", "Docker", "OneID"],
+    status: "production",
+  },
 ];
 
 const SKILLS = [
